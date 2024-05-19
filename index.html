@@ -1,1 +1,65 @@
-Hello World!
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DARKSTRATA</title>
+    <link href="https://db.onlinewebfonts.com/c/72b6f2c9990bd3d37b8013a59ed78902?family=Proxima+Nova+Bold" rel="stylesheet" type="text/css"/>
+    <style>
+        html {
+            height: 100%;
+        }
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: black;
+            color: white;
+            transition: background-color 0.5s ease, color 0.5s ease;
+            min-height: 100vh;
+            width: 100%;
+        }
+        .text {
+            font-family: 'Proxima Nova Bold', sans-serif;
+            font-size: 4em;
+            text-align: center;
+        }
+        .toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 0;
+        }
+       /* Styles applied when 'invert' class is toggled */
+        .invert, .invert body {
+            background-color: white; /* Inverted background color */
+            color: black; /* Inverted text color */
+        }
+        .toggle img {
+            width: 40px; /* Adjust based on the size of your icon */
+            height: auto;
+            transition: transform 0.5s ease;
+        }
+        .invert .toggle img {
+            transform: rotate(180deg); /* Optional: Adds a visual cue that the icon is in "invert" mode */
+        }
+    </style>
+</head>
+<body>
+    <div class="text">DARKSTRATA</div>
+    <button class="toggle" onclick="toggleColors()">
+        <img src="dark-theme.svg" alt="Invert Colors">
+    </button>
+
+    <script>
+        function toggleColors() {
+            document.documentElement.classList.toggle("invert");
+        }
+    </script>
+</body>
+</html>
