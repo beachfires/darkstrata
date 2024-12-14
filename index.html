@@ -19,7 +19,7 @@
     <link rel="preload" as="style" href="https://db.onlinewebfonts.com/c/bf9f5d50c1b928ff21436517a1a95ad9?family=Proxima+Nova">
     <link rel="stylesheet" href="https://db.onlinewebfonts.com/c/bf9f5d50c1b928ff21436517a1a95ad9?family=Proxima+Nova" media="print" onload="this.media='all'">
     <style>
-        html,body{height:100%;margin:0;padding:0;overflow:hidden}body{display:flex;flex-direction:column;justify-content:space-between;align-items:center;background-color:#000;color:#fff;transition:background-color .5s ease,color .5s ease;height:100vh;width:100vw;font-family:'Proxima Nova',sans-serif}.main-content{flex-grow:1;display:flex;flex-direction:column;justify-content:center;align-items:center;width:100%}.text{font-family:'Proxima Nova Bold',sans-serif;font-size:4em;text-align:center;word-wrap:break-word;max-width:100%;margin-bottom:0.1em}.slogan{font-family:'Proxima Nova',sans-serif;font-size:1.2em;text-align:center;word-wrap:break-word;max-width:80%;line-height:1.4;text-transform:uppercase;letter-spacing:0.05em;font-weight:200;margin-top:0}.toggle{position:absolute;top:20px;right:20px;cursor:pointer;background:0 0;border:none;padding:0;z-index:1000}.toggle img{width:40px;height:auto;transition:transform .5s ease}.invert,.invert body{background-color:#fff;color:#000}.invert .toggle img{transform:rotate(180deg)}footer{font-weight:300;font-size:1em;text-align:center;padding:20px;width:100%;box-sizing:border-box}footer a{color:inherit;text-decoration:none;margin:0 15px;display:inline-block;vertical-align:middle}footer svg{width:24px;height:24px;fill:currentColor;shape-rendering:geometricPrecision}@media (max-width:600px){.text{font-size:10vw}.slogan{font-size:3.5vw;max-width:90%}.toggle img{width:30px}footer{font-size:0.8em;padding:10px}footer svg{width:20px;height:20px}}
+        html,body{height:100%;margin:0;padding:0;overflow:hidden}body{display:flex;flex-direction:column;justify-content:space-between;align-items:center;background-color:#000;color:#fff;transition:background-color .5s ease,color .5s ease;height:100vh;width:100vw;font-family:'Proxima Nova',sans-serif}.main-content{flex-grow:1;display:flex;flex-direction:column;justify-content:center;align-items:center;width:100%}.text{font-family:'Proxima Nova Bold',sans-serif;font-size:4em;text-align:center;word-wrap:break-word;margin-bottom:0.1em;white-space:nowrap}.slogan{font-family:'Proxima Nova',sans-serif;text-align:center;word-wrap:normal;white-space:nowrap;line-height:1.4;text-transform:uppercase;letter-spacing:0.05em;font-weight:200;margin-top:0}.toggle{position:absolute;top:20px;right:20px;cursor:pointer;background:0 0;border:none;padding:0;z-index:1000}.toggle img{width:40px;height:auto;transition:transform .5s ease}.invert,.invert body{background-color:#fff;color:#000}.invert .toggle img{transform:rotate(180deg)}footer{font-weight:300;font-size:1em;text-align:center;padding:20px;width:100%;box-sizing:border-box}footer a{color:inherit;text-decoration:none;margin:0 15px;display:inline-block;vertical-align:middle}footer svg{width:24px;height:24px;fill:currentColor;shape-rendering:geometricPrecision}@media (max-width:600px){.text{font-size:10vw}.toggle img{width:30px}footer{font-size:0.8em;padding:10px}footer svg{width:20px;height:20px}}
     </style>
 </head>
 <body>
@@ -40,6 +40,25 @@
     </footer>
     <script>
         function toggleColors(){document.documentElement.classList.toggle("invert")}
+
+        function adjustSlogan() {
+            const title = document.querySelector('.text');
+            const slogan = document.querySelector('.slogan');
+            const titleWidth = title.offsetWidth;
+
+            slogan.style.width = `${titleWidth}px`;
+            
+            let fontSize = 24; // Starting font size
+            slogan.style.fontSize = `${fontSize}px`;
+
+            while (slogan.scrollWidth > titleWidth && fontSize > 8) {
+                fontSize--;
+                slogan.style.fontSize = `${fontSize}px`;
+            }
+        }
+
+        window.addEventListener('load', adjustSlogan);
+        window.addEventListener('resize', adjustSlogan);
     </script>
 </body>
 </html>
